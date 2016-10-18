@@ -29,7 +29,10 @@ module AthenaHealth
       response = Typhoeus::Request.new(
         "#{@base_url}/#{@version}/#{endpoint}",
         method: method,
-        headers: { "Authorization" => "Bearer #{@token}"},
+        headers: {
+          "Authorization" => "Bearer #{@token}",
+          "X-Mashery-Oauth-Client-Id" => @key,
+        },
         params: params,
         body: body
       ).run
